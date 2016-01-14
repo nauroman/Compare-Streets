@@ -1,0 +1,759 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Compare Streets</title>
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/styles.css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    
+<style>
+
+        #map0 {
+       height: 150px;
+		width: 100%;
+      }
+	  
+	   #map1 {
+       height: 150px;
+		width: 100%;
+      }
+	  	  
+</style>
+
+
+<script src="assets/base64.min.js"></script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-68672215-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    
+  </head>
+  
+  
+  
+  <body>
+
+
+
+<table width="100%" border="0" cellspacing="0" height="24" cellpadding="0" bgcolor="#333333">
+
+    <tr valign="middle">
+		<td align="center" valign="middle" width="100%">
+        Type cities names or addresses and compare Street Views
+		</td>
+
+	</tr>
+    
+</table>
+
+  
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="maps">
+	<tr>
+		<td width="50%">
+			<div id="map0"/>
+		</td>
+		<td width="50%">
+        	<div id="map1"/>
+		</td>
+	</tr>
+      </table>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+  <tr align="center" height="50">
+		<td align="right">
+			<input id="address0" type="textbox" placeholder="Type address here..." class="address" onClick="this.setSelectionRange(0, this.value.length)" onkeydown="if (event.keyCode == 13) onClickGo()">  
+		</td>
+        		<td>
+               <img id="submit" src="assets/button_go.png" width="48" height="48"  alt="Go!" onclick="onClickGo()"/>
+		</td>
+		<td align="left">
+			<input id="address1" type="textbox" placeholder="Type address here..." class="address" onClick="this.setSelectionRange(0, this.value.length)"  onkeydown="if (event.keyCode == 13) onClickGo()">
+		</td>
+	</tr>    
+  </table>
+
+
+<input id="inputURI" class="copyURI" width="100%" onClick="this.setSelectionRange(0, this.value.length)"/>
+
+</p>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="images">
+
+    <tr valign="top">
+		<td align="center" valign="top" width="50%">
+			<div id="images0"/>
+		</td>
+		<td align="center" valign="top" width="50%">
+			<div id="images1"/>
+		</td>
+	</tr>
+    
+</table>
+
+
+<button id="buttonMore" class="link" width="100%" onClick="onClickButtonMore()">Show more...</button>
+
+<table width="100%" height="100%" border="0" cellspacing="0" cellpadding="12" bgcolor="#aaaaaa">
+
+    <tr valign="top">
+		<td align="center" valign="top">
+      	 	<a class="big" href="http://flashunity.com/comparestreets/?YT1Mb25kb24sIEVuZ2xhbmQmYj1QYXJpcywgRnJhbmNl" title="London vs Paris" target="_self">London vs Paris</a> 
+                  	 	
+		</td>
+        <tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1Ub2t5bywgSmFwYW4mYj1OZXcgWW9yaywgVVNB" title="Tokyo vs New York" target="_self">Tokyo vs New York</a> 
+        </td>
+        </tr>
+        <tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1DeWRuZXksIEF1c3RyYWxpYSZiPUJlcmxpbiwgR2VybWFueQ==" title="Cydney vs Berlin" target="_self">Cydney vs Berlin</a> 
+        </td>
+        </tr>
+        
+		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1DaGljYWdvLCBVU0EmYj1EZXRyb2l0LCBVU0E=" title="Chicago vs Detroit" target="_self">Chicago vs Detroit</a> 
+        </td>
+        </tr>
+        
+                		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1Nb3Njb3csIFJ1c3NpYSZiPU1leGljbywgTWV4aWNv" title="Moscow vs Mexico" target="_self">Moscow vs Mexico</a> 
+        </td>
+        </tr>
+        
+        		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1TZW91bCwgS29yZWEmYj1QZWtpbiwgQ2hpbmE=" title="Seoul vs Pekin" target="_self">Seoul vs Pekin</a> 
+        </td>
+        </tr>
+        
+        
+                		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1DaGlhbmcgTWFpLCBUaGFpbGFuZCZiPVNhbiBGcmFuY2lzY28sIENhbGlmb3JuaWE=" title="Chiang Mai vs San Francisco" target="_self">Chiang Mai vs San Francisco</a> 
+        </td>
+        </tr>
+        
+                        		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1RdWViZWMgQ2l0eSwgQ2FuYWRhJmI9VmFuY291dmVyLCBDYW5hZGE=" title="Quebec City vs Vancouver" target="_self">Quebec City vs Vancouver</a> 
+        </td>
+        </tr>
+        
+        
+                                		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1WaWVubmEsIEF1c3RyaWEmYj1CYW5na29rLCBUaGFpbGFuZA==" title="Vienna vs Bangkok" target="_self">Vienna vs Bangkok</a> 
+        </td>
+        </tr>
+        
+         
+                                        		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1EdWJhaSwgVUFFJmI9V2Fyc2F3LCBQb2xhbmQ=" title="Dubai vs Warsaw" target="_self">Dubai vs Warsaw</a> 
+        </td>
+        </tr>
+        
+        
+                 
+                                        		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1SZXlramF2aWssIElzbGFuZCZiPVNpZW0gUmVhcCwgQ2FtYm9kaWE=" title="Reykjavik vs Siem Reap" target="_self">Reykjavik vs Siem Reap</a> 
+        </td>
+        </tr>
+        
+                                                		<tr>
+        <td>
+        <a class="big" href="http://flashunity.com/comparestreets/?YT1QcmFndWUsIEN6ZWNoIFJlcHVibGljJmI9Q2FwZSBUb3duLCBTb3V0aCBBZnJpY2E=" title="Prague vs Cape Town" target="_self">Prague vs Cape Town</a> 
+        </td>
+        </tr>
+        
+	</tr>
+    
+</table>
+
+
+    
+<script>
+	
+
+	
+/*
+var QueryString = function () {
+  // This function is anonymous, is executed immediately and 
+  // the return value is assigned to QueryString!
+  var query_string = {};
+  var query = window.location.search.substring(1);
+  var vars = query.split("&");
+  for (var i=0;i<vars.length;i++) {
+    var pair = vars[i].split("=");
+        // If first entry with this name
+    if (typeof query_string[pair[0]] === "undefined") {
+      query_string[pair[0]] = decodeURIComponent(pair[1]);
+        // If second entry with this name
+    } else if (typeof query_string[pair[0]] === "string") {
+      var arr = [ query_string[pair[0]],decodeURIComponent(pair[1]) ];
+      query_string[pair[0]] = arr;
+        // If third or later entry with this name
+    } else {
+      query_string[pair[0]].push(decodeURIComponent(pair[1]));
+    }
+  } 
+    return query_string;
+}();	
+*/
+	
+var map0;
+var map1;	
+	
+function init()
+{
+	initMaps();
+}
+	
+function initMaps()
+{
+	
+	// Paris 48.8589507,2.2775173
+	
+		map0 = new google.maps.Map(document.getElementById("map0"), {
+			zoom: 11,
+  			center: {lat: 48.8589507, lng: 2.2775173}
+		});
+
+ // New York 40.7034947,-74.2598647
+
+		map1 = new google.maps.Map(document.getElementById("map1"), {
+			zoom: 11,
+  			center: {lat: 40.7034947, lng: -74.2598647}
+		});
+		
+	updateStreetViews();
+}
+
+
+function gup( name, url ) {
+  //if (!url) url = location.href;
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( url );
+  return results == null ? null : results[1];
+}
+
+/*
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+*/
+
+function getUrlVarsBase64() {	
+	var str = window.location.href.substring(window.location.href.indexOf('?') + 1);
+
+	if (str && str.length > 0)
+	{
+		return str;
+	}
+	return null;
+}
+
+function updateStreetViews()
+{
+	var address0;
+	var address1;
+
+	var urlVarsBase64 = getUrlVarsBase64();
+	
+	//console.log("urlVarsBase64:" + urlVarsBase64);
+	
+	if (urlVarsBase64 != null && urlVarsBase64.length > 2)
+	{
+		var params = Base64.decode(urlVarsBase64);
+		
+		//console.log("params:" + params);
+
+		params = "/?" + params;
+	
+		address0 = gup("a",params);
+		address1 = gup("b",params);
+	}
+	
+//	console.log("location.href:" + location.href);
+//	var url = decodeURI(window.location.href);
+	//var query = getQueryParams(window.location.href);
+//alert(query.foo);
+//	var address0 = gup("address0");
+//	var address1 = gup("address1");
+	
+
+	
+//		console.log("address0:" + gup("address0"));
+		
+		/*
+  try {
+	  if (address0 && address0.length > 0)
+	  {
+     	address0 = decodeURIComponent(address0);
+	  }
+  } catch (e) {
+  }
+  
+  try {
+	  if (address1 && address1.length > 0)
+	  {
+     	address1 = decodeURIComponent(address1);
+	  }
+  } catch (e) {
+  }
+*/
+/*
+	  if (a && a.length > 0)
+	  {
+     	address0 = a;
+	  }
+
+	  if (b && b.length > 0)
+	  {
+     	address1 = b;
+	  }
+*/
+/*
+  try {
+	  if (a && a.length > 0)
+	  {
+     	address0 = a;//decodeURIComponent(a);
+	  }
+  } catch (e) {
+  }
+  
+  try {
+	  if (b && b.length > 0)
+	  {
+     	address1 = b;//decodeURIComponent(b);
+	  }
+  } catch (e) {
+  }
+  */
+	
+		//		console.log("address0:" + unescape(gup("address0")));
+
+	//	console.log("decoded address0:" + decodeURIComponent(gup("address0")));
+
+//decodeURIComponent
+
+//	var address0 = decodeURI(gup("address0"));
+//	var address1 = decodeURI(gup("address1"));
+
+//	console.log("address0:" + address0);
+
+//	var address0 = QueryString.address0.trim();
+//	var address1 = QueryString.address1.trim();
+
+	if (address0 && address0.length > 0)
+	{
+		document.getElementById("address0").value = address0;
+	}
+	
+	if (address1 && address1.length > 0)
+	{
+		document.getElementById("address1").value = address1;
+	}
+
+	removeChildren();
+	
+	if (address0 && address0.length > 0 && address1 && address1.length > 0)
+	{
+		decodeAdressForMapId(address0, "images0", map0);
+		decodeAdressForMapId(address1, "images1", map1);
+	}
+	
+	updateCopyURI();
+}
+
+function updateCopyURI()
+{
+	var inputURI = document.getElementById("inputURI");
+	
+	inputURI.value = getNewHref();
+//	inputURI.select();
+
+}
+
+function onClickGo()
+{
+	if (isValidAddresses())
+	{
+
+	//	getNewHref();
+		
+		window.location.href=getNewHref();
+	}
+}
+
+function isValidAddresses()
+{
+	return isValidAddress("address0") && isValidAddress("address1");
+}
+
+function isValidAddress(inputId)
+{
+	var address = getAddressParamString(inputId);
+	
+	return address && address.length > 0;
+}
+
+function getNewHref()
+{
+	//var str = "http://flashunity.com/comparestreets/"
+	var str = "http://flashunity.com/comparestreets/"
+
+	var paramsString = getAdsressessParamsString();
+	
+	if (paramsString.length > 0)
+	{
+		str += "?" + Base64.encode(paramsString);
+	}
+	
+//	return encodeURI(str);
+	return str;
+}
+
+function getAdsressessParamsString()
+{
+	var str = "";
+	
+	var address0 = getAddressParamString("address0");
+	
+	if (address0 && address0.length > 0)
+	{
+	//	str += "address0=" + address0;
+		str += "a=" + address0;
+	}
+
+	var address1 = getAddressParamString("address1");
+
+	if (address1 && address1.length > 0)
+	{
+		if (str.length > 0)
+		{
+			str += "&";
+		}
+	//	str += "address1=" + address1;
+		str += "b=" + address1;
+	}
+	
+	return str;//"address0=" + getAddressParamString("address0") + "&" + "address1=" + getAddressParamString("address1");
+}
+
+function getAddressParamString(inputId)
+{
+	var address = document.getElementById(inputId).value;
+	return address.trim();
+}
+
+function decodeAdressForMapId(adress, imagesId, map)
+{
+	geocodeAddress(adress, imagesId, new google.maps.Geocoder(), map);
+}
+
+function geocodeAddress(address, imagesId, geocoder, resultsMap) {
+
+	//var address = document.getElementById(inputId).value;
+  
+	geocoder.geocode({'address': address}, function(results, status) {
+	  
+	if (status === google.maps.GeocoderStatus.OK) {
+		
+		var location = results[0].geometry.location;
+
+		addStreetViews(imagesId, location.lat(), location.lng())
+
+		resultsMap.setCenter(results[0].geometry.location);
+		
+		var marker = new google.maps.Marker({
+			map: resultsMap,
+			position: results[0].geometry.location
+		});
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+	  
+	  setVisible("buttonMore", false);
+    }
+  });
+}
+
+
+
+function removeChildren()
+{
+	while(images0.childNodes.length > 0)
+	{
+		images0.removeChild(images0.childNodes[0]);
+	}
+	
+	while(images1.childNodes.length > 0)
+	{
+		images1.removeChild(images1.childNodes[0]);
+	}
+}
+
+function addStreetViews(imagesId, lat, lng)
+{
+		var counter=getStreetViewCount();
+		var radius=0;
+		var angle=0;
+
+		addStreetView(getStreetViewWidth(), getStreetViewHeight(), lat, lng, 0, getStreetViewFov(), imagesId, counter, 0, radius, angle, null);
+}
+
+function getDeltaByRadiusAndAngle(radius, angle)
+{
+	return { x:radius * Math.cos(angle), y:radius*Math.sin(angle)};
+}
+
+function getStreetViewWidth()
+{
+	var w = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+
+	return w/2-32;
+}
+
+function getStreetViewHeight()
+{
+	return getStreetViewWidth()/2;
+}
+
+function getStreetViewFov()
+{
+	return 90;
+}
+
+function getDRadius()
+{
+	return 0.0004; // 8
+}
+
+function getDAngle()
+{
+	return Math.PI/6;
+}
+
+function getStreetViewCount()
+{
+	return 20;
+}
+
+/*
+function getImageSizeInBytes(imgURL) {
+    var request = new XMLHttpRequest();
+    request.open("HEAD", imgURL, false);
+    request.send(null);
+    var headerText = request.getAllResponseHeaders();
+    var re = /Content\-Length\s*:\s*(\d+)/i;
+    re.exec(headerText);
+    return parseInt(RegExp.$1);
+}
+*/
+function getImageFileName(width, height, lat, lng, heading, fov)
+{
+	return 	"https://maps.googleapis.com/maps/api/streetview?size="+width+"x"+height+"&location="+lat+","+lng+"&heading="+heading+"&fov="+fov+"&pitch=0&key=AIzaSyCThVj4UinsuMXTqwahs0encILaeJn2ma8";
+}
+
+
+
+var lastStreetViewData0;
+var lastStreetViewData1;
+
+function addStreetView(width, height, lat, lng, heading, fov, elementId, counter, errors, radius, angle, lastValidLocation) {
+	
+	if (counter > 0 && errors < 25)
+	{
+	//	console.log("addStreetView, counter:" + counter);
+	
+		//console.log("addStreetView, errors:" + errors);
+	
+		var sv = new google.maps.StreetViewService();
+	
+		var d = getDeltaByRadiusAndAngle(radius, angle);
+
+		var dlat = lat + d.x;
+		var dlng = lng + d.y;
+
+		sv.getPanorama({location: {lat: dlat, lng: dlng}, radius: 50}, function (data, status) {
+	
+		if (status === google.maps.StreetViewStatus.OK) {
+			
+			lastValidLocation = {lat:dlat, lng:dlng};
+
+			addImage(width, height, dlat, dlng, heading, fov,elementId);
+					
+			radius += getDRadius();
+
+			counter--;
+			errors=0;
+			
+			if (elementId == "images0")
+			{
+				var marker = new google.maps.Marker({
+				map: map0,
+				position: {lat: dlat, lng: dlng}});
+			}
+			else
+			{
+				var marker = new google.maps.Marker({
+				map: map1,
+				position: {lat: dlat, lng: dlng}});
+			}
+		
+  		}
+		else
+		{
+			errors++;
+
+			if (errors < 3)
+			{
+				radius += getDRadius();
+			}
+			else if (errors < 5)
+			{
+				radius += getDRadius()*2;
+			}
+			else if (errors < 10)
+			{
+				radius += getDRadius()*3;
+			}
+			else 
+			{
+				if (lastValidLocation != null)
+				{
+					lat = lastValidLocation.lat;
+					lng = lastValidLocation.lng;
+					
+					radius = getDRadius();// + Math.random() * getDRadius();
+					//angle = Math.random() * Math.PI * 2;
+					
+			//		radius = getDRadius() + Math.random() * getDRadius();
+				//	angle = Math.random() * Math.PI * 2;
+				}				
+				else
+				{
+					radius += getDRadius()*10;
+				}
+			}
+		}
+		
+		angle += getDAngle();
+
+		addStreetView(width, height, lat, lng, heading, fov, elementId, counter, errors, radius, angle, lastValidLocation);	
+		});
+	}
+	else
+	{
+		if (counter == 0)
+		{
+			if (elementId == "images0")
+			{
+				lastStreetViewData0 = {};
+				storeData(lastStreetViewData0, lat, lng, heading, fov, errors, radius, angle, lastValidLocation);
+			}
+			
+			if (elementId == "images1")
+			{
+				lastStreetViewData1 = {};
+				storeData(lastStreetViewData1, lat, lng, heading, fov, errors, radius, angle, lastValidLocation);
+			}
+			
+			setVisible("buttonMore", lastStreetViewData0 != null && lastStreetViewData1 != null);
+		}
+	}
+}
+
+function storeData(obj, lat, lng, heading, fov, errors, radius, angle, lastValidLocation)
+{
+	obj.lat = lat;
+	obj.lng = lng;
+	obj.heading = heading;
+	obj.fov = fov;
+	obj.errors = errors;
+	obj.radius = radius;
+	obj.angle = angle;
+	obj.lastValidLocation = lastValidLocation;
+}
+
+function addImage(width, height, lat, lng, heading, fov, elementId)
+{
+	var img = document.createElement('img');
+	document.getElementById(elementId).appendChild(img);
+	img.src = getImageFileName(width, height, lat, lng, heading, fov);
+	img.height=getStreetViewHeight();
+	img.width=getStreetViewWidth();
+	img.className="icon";
+	
+	img.addEventListener("click", function(){
+		
+	//	https://www.google.ca/maps/@49.822762,-97.0767684,3a,75y,257h,90t
+		
+			window.open(getGoogleMapsURL(lat, lng),"_blank");
+		});
+		
+}
+
+function getGoogleMapsURL(lat, lng, heading, fov)
+{
+	return encodeURI("http://maps.google.com/maps?q=&layer=c&cbll=" + lat +"," + lng + "&cbp=11," + heading + ",0,0,5");
+}
+
+function onClickButtonMore()
+{
+	setVisible("buttonMore", false);
+
+	if (lastStreetViewData0 != null && lastStreetViewData1 != null)
+	{
+		continueStreetView(lastStreetViewData0, "images0");
+		continueStreetView(lastStreetViewData1, "images1");
+		
+		lastStreetViewData0 = null;
+		lastStreetViewData1 = null;
+	}
+}
+
+function continueStreetView(data, imagesId)
+{
+	addStreetView(getStreetViewWidth(), getStreetViewHeight(), data.lat, data.lng, 0, getStreetViewFov(), imagesId, getStreetViewCount(), data.errors, data.radius, data.angle, data.lastValidLocation);
+}
+
+function setVisible(id, value) {
+    var e = document.getElementById(id);
+	e.style.display = (value == true) ? 'block' : 'none';
+}
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCThVj4UinsuMXTqwahs0encILaeJn2ma8&signed_in=true&callback=init" async defer></script>
+
+
+
+</body>
+</html>
