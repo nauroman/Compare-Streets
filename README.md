@@ -7,3 +7,5 @@
  - Google Maps JavaScript API
 
 http://flashunity.com/comparestreets/
+
+![Screenshot](http://flashunity.com/assets/comparestreets/2.jpg)
